@@ -70,4 +70,5 @@ public class UserController {
 		ResourceNotFoundException loginMesage = userService.loginUser(loginDto);
 		return new ResponseEntity<Object>(loginMesage, HttpStatus.OK);
 	}
+	
 }

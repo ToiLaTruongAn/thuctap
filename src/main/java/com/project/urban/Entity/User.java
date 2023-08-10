@@ -40,11 +40,6 @@ public class User {
 	@Column(name = "MaNV", length = 12, nullable = false, unique = true)
 	private String MaNV;
 
-	@Column(name = "username", length = 50, nullable = false, unique = true)
-	@NotBlank(message = "Username is required")
-	@Size(max = 50, message = "Username must be less than 50 characters")
-	private String username;
-
 	@Column(name = "password", length = 250, nullable = false)
 	@NotBlank(message = "Password is required")
 	private String password;

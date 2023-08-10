@@ -17,6 +17,14 @@ public interface EventService {
 
 	void deleteEvent(Long eventId);
 	
-//    EventDTO findByMaNV(String maNV);
+	//search 
+    List<EventDTO> searchByMaNV(String MaNV);
+    
+    List<EventDTO> searchByName(String name);
+    
+    List<EventDTO> seachByCompany(String name);
+    
+    List<EventDTO> seachByTask(String name);
+
 
 }

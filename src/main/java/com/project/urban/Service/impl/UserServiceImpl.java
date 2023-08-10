@@ -18,6 +18,7 @@ import com.project.urban.Entity.Position;
 import com.project.urban.Entity.User;
 import com.project.urban.Exception.Constant;
 import com.project.urban.Exception.ErrorConstant;
+import com.project.urban.Exception.InvalidDataException;
 import com.project.urban.Exception.ResourceNotFoundException;
 import com.project.urban.Exception.ResponseCode;
 import com.project.urban.Repository.CompanyRepository;
@@ -78,6 +79,9 @@ public class UserServiceImpl implements UserService {
 	public List<UserDTO> getAllUsers() {
 		List<UserDTO> allUsers = new ArrayList<>();
 		List<User> users = userRepository.findAll();
+		if (users.isEmpty()) {
+			throw new InvalidDataException(ErrorConstant.NOT_FOUND, ErrorConstant.USER_NOT_FOUND);
+		}
 		ModelMapper modelMapper = new ModelMapper();
 		for (User user : users) {
 			UserDTO userDTO = modelMapper.map(user, UserDTO.class);

@@ -56,18 +56,38 @@ public class EventController {
 		eventService.deleteEvent(eventId);
 		return new ResponseEntity<>("Event successfully deleted!", HttpStatus.OK);
 	}
-	
+
 	@PutMapping("/{id}")
 	public ResponseEntity<EventDTO> updateEvent(@PathVariable("id") Long eventId, @RequestBody EventDTO eventDTO) {
 //		eventDTO.setId(eventId);
 		EventDTO updatedEventDTO = eventService.updateEvent(eventDTO);
 		return new ResponseEntity<>(updatedEventDTO, HttpStatus.OK);
 	}
-	
-	//search
+
+	// search
 	@GetMapping("/getAllEvent")
 	public ResponseEntity<List<EventDTO>> getAllEvents() {
 		List<EventDTO> events = eventService.getAllEvents();
 		return new ResponseEntity<>(events, HttpStatus.OK);
+	}
+
+	@GetMapping("search/MaNV/{MaNV}")
+	public ResponseEntity<List<EventDTO>> searchByMaNV(@PathVariable(name = "MaNV", required = true) String MaNV) {
+		return new ResponseEntity<>(eventService.searchByMaNV(MaNV), HttpStatus.OK);
+	}
+
+	@GetMapping("search/Name/{name}")
+	public ResponseEntity<List<EventDTO>> searchByName(@PathVariable(name = "name", required = true) String name) {
+		return new ResponseEntity<>(eventService.searchByName(name), HttpStatus.OK);
+	}
+
+	@GetMapping("search/Company/{name}")
+	public ResponseEntity<List<EventDTO>> seachByCompany(@PathVariable(name = "name", required = true) String name) {
+		return new ResponseEntity<>(eventService.seachByCompany(name), HttpStatus.OK);
+	}
+
+	@GetMapping("search/Task/{name}")
+	public ResponseEntity<List<EventDTO>> seachByTask(@PathVariable(name = "name", required = true) String name) {
+		return new ResponseEntity<>(eventService.seachByTask(name), HttpStatus.OK);
 	}
 }
