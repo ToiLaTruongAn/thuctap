@@ -37,9 +37,7 @@ public class EventServiceImpl implements EventService {
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "task not found"));
 		ModelMapper modelMapper = new ModelMapper();
 		Event event = modelMapper.map(eventDTO, Event.class);
-        eventDTO.setMaNV(event.getUser().getMaNV());
-        eventDTO.setName(event.getUser().getName());
-        eventDTO.setCompany(event.getUser().getCompany().getName());
+//        eventDTO.setCompany(event.getUser().getCompany().getName());
 		event.setTask(task);
 		/*
 		 * Long currentUserId = userService.getCurrentUserId(); User user =
@@ -49,6 +47,9 @@ public class EventServiceImpl implements EventService {
 		Event saveEvent = eventRepository.save(event);
 		EventDTO saveEventDTO = modelMapper.map(saveEvent, EventDTO.class);
 		saveEventDTO.setTaskId(saveEvent.getTask().getId());
+		saveEventDTO.setMaNV(saveEvent.getUser().getMaNV());
+//        eventDTO.setMaNV(event.getUser().getMaNV());
+		saveEventDTO.setName(saveEvent.getUser().getName());
 
 		return saveEventDTO;
 	}
